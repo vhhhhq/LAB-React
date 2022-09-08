@@ -6,8 +6,8 @@ import ProductForm from './components/ProductForm/ProductForm';
 function App() {
   return (
     <div className='app'>
-    <ProductsList/>
     <ProductForm/>
+    <ProductsList/>
     </div>
   );
 }
