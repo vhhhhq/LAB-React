@@ -5,8 +5,8 @@ import './ProductsList.scss';
 import { fetchProducts } from '../../store/actions';
 
 
-import update from '../assets/edit.png'
-import cancel from '../assets/delete.png'
+import update from '../../assets/edit.png'
+import cancel from '../../assets/delete.png'
 
 function ProductsList({ item, index, deleteTodoItem, updateTodoItem }) {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function ProductsList({ item, index, deleteTodoItem, updateTodoItem }) {
     }, [])
     console.log('products', products)
 
-    
+
   return (
    <div>
     <h1>ProductsList</h1>
