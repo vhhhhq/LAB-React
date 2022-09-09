@@ -1,15 +1,20 @@
-.complete{
-    width: 25px;
-    position: relative;
-    top: 2px;
+.btns button{
+  border: none;
+  background: #fff;
+  cursor: pointer;
+}
+
+
+
+  .ant-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
   }
-  
-  .update{
-    width: 25px;
-  }
-  
-  .cancel{
-    width: 25px;
-    position: relative;
-    top: 2px;
+  .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }

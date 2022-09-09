@@ -1,0 +1,33 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+.button button {
+    width: 300px;
+    background-color: rgb(144, 144, 144);
+    border: 1px solid rgb(144, 144, 144);
+    border-radius: 50px;
+}
+
+.button button:hover {
+    width: 300px;
+    background-color: rgb(144, 144, 144);
+    border: 1px solid rgb(144, 144, 144);
+    border-radius: 50px;
+}
+.button button:focus {
+    width: 300px;
+    background-color: rgb(144, 144, 144);
+    border: 1px solid rgb(144, 144, 144);
+    border-radius: 50px;
+}
+.btn-ant button {
+    background-color: rgb(144, 144, 144);
+    border: 1px solid rgb(144, 144, 144);
+    border-radius: 50px;
+}
+
+
+

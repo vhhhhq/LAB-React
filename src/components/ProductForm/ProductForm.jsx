@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import { Button, Modal, Form, Input } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Button, Modal, Form, Input, Upload } from 'antd';
 import { useDispatch } from 'react-redux';
+import { PlusOutlined } from '@ant-design/icons';
 import {createProducts} from '../../store/actions'
+import './ProductForm.scss'
 
 
 function ProductForm() {
     const dispatch = useDispatch()
-        const onFinish = (values) => {
-          console.log('Success:', values);
-          dispatch(createProducts(values))
-        };
+    const [form]=Form.useForm()
+    const onFinish = (values) => {
+      console.log('Success:', values);
+      dispatch(createProducts(values))
+    };
       
-        const onFinishFailed = (errorInfo) => {
-          console.log('Failed:', errorInfo);
-        };
+    const onFinishFailed = (errorInfo) => {
+      console.log('Failed:', errorInfo);
+    };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,13 +32,13 @@ function ProductForm() {
     setIsModalOpen(false);
   };
 
+  
   return (
-    <div>
-        <h1>ProductForm</h1>
+    <div className='button'>
       <Button type="primary" onClick={showModal}>
-        Open Modal
+        ADD
       </Button>
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal footer={null} title="ID" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
           <Form
             name="basic"
             onFinish={onFinish}
@@ -67,17 +70,26 @@ function ProductForm() {
             >
               <Input />
             </Form.Item>
-
-          
-            <Form.Item
-              wrapperCol={{
-                offset: 8,
-                span: 16,
-              }}
-            >
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
+            {/* <Form.Item label="Upload"  name="image">
+              <Upload action="/upload.do" listType="picture-card">
+                <div>
+                  <PlusOutlined />
+                  <div
+                    style={{
+                      marginTop: 8,
+                    }}
+                  >
+                    Upload
+                  </div>
+                </div>
+              </Upload>
+            </Form.Item> */}
+            <Form.Item>
+              <div className='btn-ant'>
+                <Button onClick={handleOk} type="primary" htmlType="submit">
+                  Save
+                </Button>
+              </div>
             </Form.Item>
       </Form>
     </Modal>
