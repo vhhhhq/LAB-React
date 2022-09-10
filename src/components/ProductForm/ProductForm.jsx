@@ -1,36 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { Button, Modal, Form, Input, Upload } from 'antd';
-import { useDispatch } from 'react-redux';
-import { PlusOutlined } from '@ant-design/icons';
-import {createProducts} from '../../store/actions'
+import { useDispatch, useSelector } from 'react-redux';
+import {createProduct, setModalState, editProducts, setEditProduct} from '../../store/actions'
 import './ProductForm.scss'
 
 
 function ProductForm() {
-    const dispatch = useDispatch()
-    const [form]=Form.useForm()
-    const onFinish = (values) => {
-      console.log('Success:', values);
-      dispatch(createProducts(values))
-    };
-      
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
+  const dispatch = useDispatch();
+  const editProduct = useSelector((store) => store.editProduct)
+  const isModalOpen = useSelector((store) => store.isModalOpen)
+  const [form] = Form.useForm()
+   
+  useEffect(() => {
+    if (!editProduct) return
+    form.setFieldsValue(editProduct)
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  }, [form, editProduct])
+
+
+
 
   const showModal = () => {
-    setIsModalOpen(true);
+    dispatch(setModalState(true));
+
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const closeModal = () => {
+    dispatch(setModalState(false));
+    dispatch(setEditProduct(null))
+    form.resetFields()
+  }
+
+
+
+  const onFinish = (values) => {
+    if (editProduct) {
+      dispatch(editProducts(values, editProduct.id))
+      dispatch(setEditProduct(null))
+    } else {
+      dispatch(createProduct(values))
+    }
+
+    setTimeout(() => {
+      form.resetFields()
+    }, 0);
+
+    dispatch(setModalState(false))
+
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
+
+
+  const title = editProduct ? 'Update' : 'Create'
+  const modalTitle = editProduct ? 'Update Product' : 'Create Product'
+
 
   
   return (
@@ -38,8 +64,9 @@ function ProductForm() {
       <Button type="primary" onClick={showModal}>
         ADD
       </Button>
-        <Modal footer={null} title="ID" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal footer={null} title={modalTitle} open={isModalOpen} onCancel={closeModal}>
           <Form
+            form={form}
             name="basic"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -70,25 +97,26 @@ function ProductForm() {
             >
               <Input />
             </Form.Item>
-            {/* <Form.Item label="Upload"  name="image">
-              <Upload action="/upload.do" listType="picture-card">
-                <div>
-                  <PlusOutlined />
-                  <div
-                    style={{
-                      marginTop: 8,
-                    }}
-                  >
-                    Upload
-                  </div>
-                </div>
+            <Form.Item
+              label="Image"
+              name="image"
+              valuePropName="file"
+            >
+              <Upload
+                accept=".png, .jpg"
+                listType='picture-card'
+                beforeUpload={() => false}
+                multiple={false}
+                maxCount={1}
+              >
+                <Button>Upload</Button>
               </Upload>
-            </Form.Item> */}
+            </Form.Item>
             <Form.Item>
               <div className='btn-ant'>
-                <Button onClick={handleOk} type="primary" htmlType="submit">
-                  Save
-                </Button>
+              <Button type="primary" htmlType="submit">
+                {title}
+              </Button>
               </div>
             </Form.Item>
       </Form>
