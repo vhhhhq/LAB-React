@@ -10,17 +10,17 @@
     border: 1px solid rgb(144, 144, 144);
     border-radius: 50px;
 }
-
 .button button:hover {
     width: 300px;
-    background-color: rgb(144, 144, 144);
-    border: 1px solid rgb(144, 144, 144);
+    background-color: rgb(202, 173, 173);
+    border: 1px solid rgb(202, 173, 173);
     border-radius: 50px;
 }
+
 .button button:focus {
     width: 300px;
-    background-color: rgb(144, 144, 144);
-    border: 1px solid rgb(144, 144, 144);
+    background-color: rgb(202, 173, 173);
+    border: 1px solid rgb(202, 173, 173);
     border-radius: 50px;
 }
 .btn-ant button {
@@ -28,6 +28,15 @@
     border: 1px solid rgb(144, 144, 144);
     border-radius: 50px;
 }
-
+.btn-ant button:focus {
+    background-color: rgb(202, 173, 173);
+    border: 1px solid rgb(202, 173, 173);
+    border-radius: 50px;
+}
+.btn-ant button:hover {
+    background-color: rgb(202, 173, 173);
+    border: 1px solid rgb(202, 173, 173);
+    border-radius: 50px;
+}
 
 

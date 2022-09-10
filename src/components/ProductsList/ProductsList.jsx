@@ -24,9 +24,6 @@ const ProductsList = () => {
         dispatch(setModalState(true));
     };
     
-    const closeModal = () => {
-        dispatch(setModalState(false));
-    }
     
     const handleEdit = (values) => {
         dispatch(setEditProduct(values))
@@ -46,7 +43,7 @@ const ProductsList = () => {
   return (
    <div className='list'>
     <ProductForm/>
-    <h1>Products List</h1>
+    <h1>Product List</h1>
      <List
         loading={productsLoading}
         itemLayout="horizontal"

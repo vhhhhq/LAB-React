@@ -54,8 +54,7 @@ function ProductForm() {
   };
 
 
-  const title = editProduct ? 'Update' : 'Create'
-  const modalTitle = editProduct ? 'Update Product' : 'Create Product'
+  const title = editProduct ? 'Update' : 'Create';
 
 
   
@@ -64,7 +63,7 @@ function ProductForm() {
       <Button type="primary" onClick={showModal}>
         ADD
       </Button>
-        <Modal footer={null} title={modalTitle} open={isModalOpen} onCancel={closeModal}>
+        <Modal footer={null} title='Product' open={isModalOpen} onCancel={closeModal}>
           <Form
             form={form}
             name="basic"
@@ -109,7 +108,7 @@ function ProductForm() {
                 multiple={false}
                 maxCount={1}
               >
-                <Button>Upload</Button>
+                <Button>+</Button>
               </Upload>
             </Form.Item>
             <Form.Item>
