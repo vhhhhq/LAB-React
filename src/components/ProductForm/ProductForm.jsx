@@ -18,8 +18,6 @@ function ProductForm() {
   }, [form, editProduct])
 
 
-
-
   const showModal = () => {
     dispatch(setModalState(true));
 
@@ -30,8 +28,6 @@ function ProductForm() {
     dispatch(setEditProduct(null))
     form.resetFields()
   }
-
-
 
   const onFinish = (values) => {
     if (editProduct) {
@@ -54,7 +50,6 @@ function ProductForm() {
   };
 
 
-  const title = editProduct ? 'Update' : 'Create';
 
 
   
@@ -114,7 +109,7 @@ function ProductForm() {
             <Form.Item>
               <div className='btn-ant'>
               <Button type="primary" htmlType="submit">
-                {title}
+                Save
               </Button>
               </div>
             </Form.Item>
